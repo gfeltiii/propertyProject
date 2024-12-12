@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Dashboard</title>
+  <link rel="stylesheet" href="buyerdashboarddesign.css">
+</head>
+<body>
+  <!-- Main Dashboard -->
+  <div class="dashboard-container">
+    <!-- Welcome Note -->
+    <header><h2>Welcome to Your Dashboard!</h2></header>
+    <div class="welcome-modal" id="welcome-modal">
+        <div class="welcome-modal-content">
+            <span class="close-btn" id="close-btn">&times;</span>
+            <p><h3>Hey there first-time user!</h3></p><br>
+            <p>Thank you for choosing us. We hope you find your dream property.</p>
+            <img src="businessman.png">
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+      <input type="text" id="search-bar" placeholder="Search for properties..." oninput="searchProperties()">
+    </div>
+
+    <!-- Property Listings -->
+    <div class="property-list" id="property-list">
+      <!-- Dynamic property cards will be inserted here -->
+    </div>
+
+    <!-- Wishlist Section -->
+    <h3>Your Wishlist</h3>
+    <div class="wishlist-container" id="wishlist-container">
+      <!-- Dynamic wishlist cards will be inserted here -->
+    </div>
+  </div>
+
+  <script src="buyer.js"></script>
+</body>
+</html>
