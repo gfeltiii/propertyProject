@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="buyerdashboarddesign.css">
+    <script src="signup.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="property-list">
+        <div class="property-card">
+            <img src="./img/surebetlogologin.png" width="100px">
+            <h4>Sign Up</h4>
+    <form id='form' action="signupconfirm.php" method="post">
+        <p style="text-align: left;">Email:</p><input id="email" name="email" type="text" maxlength="50" style="width: 100%;"><br>
+        <p style="text-align: left;">Username:</p> <input id="username" name="username" type="text" maxlength="24" style="width: 100%;"><br>
+        <p style="text-align: left;">First Name:</p> <input id="firstName" name="firstName" type="text" maxlength="24" style="width: 100%;"><br>
+        <p style="text-align: left;">Last Name:</p> <input id="lastName" name="lastName" type="text" maxlength="24" style="width: 100%;"><br>
+        <p style="text-align: left;">Password:</p> <input id="password" name="password" type="password" maxlength="40" style="width: 100%;"><br>
+        <p style="text-align: left;">Confirm Password:</p> <input id="passwordConfirm" name="passwordConfirm" type="password" maxlength="40" style="width: 100%;"><br>
+        <p style="text-align: left;">Account Type:</p>
+        <p style="text-align: left;">&nbsp; &nbsp;    <input name="userType" type="radio" value="Buyer" checked> Buyer  </p>
+        <p style="text-align: left;"> &nbsp; &nbsp;    <input name="userType" type="radio" value="Seller" style="margin-bottom: 10px;"> Seller</p>
+            <p><span id="warning" style="color: red;"></span></p><br>
+
+            <button>Create Account</button><br>
+    </form>
+    <br>
+    <p>Have An Account?<br>
+    <a href="login.html">Click Here</a> To Login!</p>
+        </div></div></div>
+</body>
