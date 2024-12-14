@@ -10,7 +10,17 @@
   <!-- Main Dashboard -->
   <div class="dashboard-container">
     <!-- Welcome Note -->
-    <header><h2>Welcome to Your Dashboard!</h2></header>
+    <header>
+        <img src="projectlogo.png" alt="logo" class="logo">
+        <h2>Hello, buyer! Welcome to your dashboard</h2>
+        <div class="user-icon-container">
+            <img src="usericon.webp" alt="User Icon" class="user-icon" onclick="toggleDropdown()">
+            <div id="user-dropdown" class="dropdown-menu">
+              <a href="#" onclick="goToSellerDashboard()">Seller Dashboard</a>
+              <a href="#" onclick="signOut()">Sign Out</a>
+            </div>
+          </div>
+    </header>
     <div class="welcome-modal" id="welcome-modal">
         <div class="welcome-modal-content">
             <span class="close-btn" id="close-btn">&times;</span>
@@ -22,7 +32,36 @@
 
     <!-- Search Bar -->
     <div class="search-bar-container">
-      <input type="text" id="search-bar" placeholder="Search for properties..." oninput="searchProperties()">
+        <input type="text" id="search-bar" placeholder="Search for properties..." oninput="searchProperties()">
+        <div id="filter-section">
+            <label for="property-type">Property Type:</label>
+            <select id="property-type">
+                <option value="">Any</option>
+                <option value="Beach House">Beach House</option>
+                <option value="Country Estate">Country Estate</option>
+                <option value="Modern Apartment">Modern Apartment</option>
+            </select>
+    
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="">Any</option>
+                <option value="CA">California(CA)</option>
+                <option value="CO">Colorado(CO)</option>
+                <option value="FL">Florida(FL)</option>
+                <option value="GA">Georgia(GA)</option>
+            </select>
+    
+            <label for="price-range">Price Range:</label>
+            <select id="price-range">
+                <option value="">Any</option>
+                <option value="0-10000">Up to $10,000</option>
+                <option value="10000-500000">$10,000 - $500,000</option>
+                <option value="500000-1000000">$500,000 and $1,000,000</option>
+                <option value="1000000+">$1,000,000 and above</option>
+            </select>
+    
+            <button onclick="applyFilters()">Apply Filters</button>
+        </div>
     </div>
 
     <!-- Property Listings -->
@@ -31,7 +70,8 @@
     </div>
 
     <!-- Wishlist Section -->
-    <h3>Your Wishlist</h3>
+    <br>
+    <h3 class="wishlisttitle">Your Wishlist</h3>
     <div class="wishlist-container" id="wishlist-container">
       <!-- Dynamic wishlist cards will be inserted here -->
     </div>
@@ -40,3 +80,4 @@
   <script src="buyer.js"></script>
 </body>
 </html>
+
