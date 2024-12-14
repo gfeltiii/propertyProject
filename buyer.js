@@ -1,4 +1,3 @@
-// Sample data (in a real-world scenario, this would be fetched from a database)
 const properties = [
     {
       id: 1,
@@ -101,8 +100,29 @@ const properties = [
 // Wishlist (could be stored in local storage or a database)
 let wishlist = [];
   
-// Check if it's the user's first login
-let isFirstLogin = true;  // Set to false for subsequent logins
+// Function to display welcome message
+function displayWelcomeMessage() {
+    setTimeout(function() {
+        // Check if it's the user's first login
+        let isFirstLogin = localStorage.getItem('firstLogin') === null;
+
+        if (isFirstLogin) {
+            // Show the welcome modal for the first-time user
+            document.getElementById("welcome-modal").style.display = 'block';
+            
+            // Set the flag in localStorage to indicate that the user has logged in before
+            localStorage.setItem('firstLogin', 'false');
+        } else {
+            // Hide the welcome modal for subsequent logins
+            document.getElementById("welcome-modal").style.display = 'none';
+        }
+    }, 2000); // Delay for modal appearance
+}
+
+// Function to close the welcome modal
+document.getElementById("close-btn").onclick = function() {
+    document.getElementById("welcome-modal").style.display = 'none';
+}
 
 // Function to display welcome message
 function displayWelcomeMessage() {
@@ -119,21 +139,30 @@ function displayWelcomeMessage() {
 function renderProperties(filteredProperties = properties) {
     const propertyList = document.getElementById("property-list");
     propertyList.innerHTML = ''; // Clear previous listings
-    
+
     filteredProperties.forEach(property => {
         const card = document.createElement("div");
         card.classList.add("property-card");
-      
+
+        // Create an anchor tag wrapping the entire card (or just the image)
+        const propertyLink = document.createElement("a");
+        propertyLink.href = `property-${property.id}.html`;  // Link to specific HTML page for each property
+        propertyLink.style.textDecoration = "none";  
+        propertyLink.style.color = "black";
+
+        // Set the inner HTML of the card
         card.innerHTML = `
             <img src="${property.image}" alt="${property.title}">
             <h4>${property.title}</h4>
             <p>${property.description}</p>
             <p>${property.location}</p>
             <p><strong>Price:</strong> ${property.price}</p>
-            <button onclick="addToWishlist(${property.id})">Add to Wishlist</button>
+            <button onclick="addToWishlist(${property.id}); event.preventDefault();">Add to Wishlist</button>
         `;
       
-        propertyList.appendChild(card);
+        // Append the card to the propertyLink and then append the propertyLink to the property list
+        propertyLink.appendChild(card);
+        propertyList.appendChild(propertyLink);
     });
 }
   
@@ -152,7 +181,8 @@ function renderWishlist() {
             <h4>${property.title}</h4>
             <p>${property.description}</p>
             <p>${property.location}</p>
-            <p><strong>Price:</strong> ${property.price}</p>
+            <p><strong>Price:</strong> ${property.price.toLocaleString()}</p>
+            <button onclick="removeFromWishlist(${property.id})">Remove from Wishlist</button>
         `;
       
         wishlistContainer.appendChild(card);
@@ -169,6 +199,62 @@ function searchProperties() {
     
     renderProperties(filteredProperties);
 }
+
+// Function to apply filters
+function applyFilters() {
+    const propertyType = document.getElementById('property-type').value;
+    const location = document.getElementById('location').value;
+    const priceRange = document.getElementById('price-range').value;
+
+    const filteredProperties = properties.filter(property => {
+        let matches = true;
+
+        // Filter by property type
+        if (propertyType && property.description !== propertyType) {
+            matches = false;
+        }
+
+        // Filter by state (location is in the format "City, State")
+        if (location) {
+            const propertyState = property.location.split(', ')[1];  // Extract state
+            if (propertyState !== location) {
+                matches = false;
+            }
+        }
+
+        // Filter by price range
+        if (priceRange) {
+            // Remove dollar sign and commas to compare as numbers
+            const [minPrice, maxPrice] = priceRange.split('-').map(price => {
+                return parseInt(price.replace(/[^0-9]/g, ''));  // Strip '$' and commas
+            });
+
+            const propertyPrice = parseInt(property.price.replace(/[^0-9]/g, '')); // Price without '$' and commas
+
+            if (maxPrice && (propertyPrice < minPrice || propertyPrice > maxPrice)) {
+                matches = false;
+            } else if (!maxPrice && propertyPrice < minPrice) {
+                matches = false;
+            }
+        }
+
+        return matches;
+    });
+
+    renderProperties(filteredProperties);
+}
+
+// Function to remove property from wishlist
+function removeFromWishlist(propertyId) {
+    // Remove the propertyId from the wishlist array
+    wishlist = wishlist.filter(id => id !== propertyId);
+    
+    // Re-render the wishlist after removal
+    renderWishlist();
+
+    alert("Property removed from your wishlist.");
+}
+
   
 // Function to add property to wishlist
 function addToWishlist(propertyId) {
@@ -181,6 +267,25 @@ function addToWishlist(propertyId) {
     }
 }
 
+// Toggle Dropdown Menu
+function toggleDropdown() {
+    const dropdown = document.getElementById("user-dropdown");
+    // Toggle visibility of the dropdown menu
+    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+}
+
+// Go to Seller Dashboard
+function goToSellerDashboard() {
+    window.location.href = '/seller-dashboard'; // Update the URL accordingly
+}
+
+// Sign Out Action
+function signOut() {
+    // Perform sign out actions (e.g., clear session, log out, etc.)
+    alert("You have signed out.");
+    window.location.href = '/login'; // Redirect to login page after sign out
+}
+
 // Function to close the welcome modal
 document.getElementById("close-btn").onclick = function() {
     document.getElementById("welcome-modal").style.display = 'none';
@@ -189,4 +294,5 @@ document.getElementById("close-btn").onclick = function() {
 // Initialize dashboard
 displayWelcomeMessage();
 renderProperties();  // Render all properties initially
+  
   
