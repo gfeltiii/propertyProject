@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <link rel="stylesheet" href="propertydesign.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="surebetlogo.png" alt="Property Logo" class="logo">
+        </div>
+        <h1>Property Details</h1>
+        <p>Explore all the important details about this property</p>
+    </header>
+
+    <section id="property-info">
+        <!-- Property Image Slideshow -->
+        <div class="image-slideshow">
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="MA3.webp" alt="Property Image 1">
+                </div>
+                <div class="slide fade">
+                    <img src="MA32.webp" alt="Property Image 2">
+                </div>
+                <div class="slide fade">
+                    <img src="MA33.webp" alt="Property Image 3">
+                </div>
+            </div>
+
+            <!-- Next and Previous Arrows -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <button class="back-btn" onclick="window.location.href='buyerdashboard.html'">Back to View All Properties</button>
+
+        <div class="property-detail">
+            <h2>Name/address and Type</h2>
+            <p id="location">Name: Wilmington Island Apartments</p>
+            <p id="age">Type: Modern Apartments</p>
+        </div>
+
+        <div class="property-detail">
+            <h2>Location and Age</h2>
+            <p id="location">Location: Savannah, Georgia</p>
+            <p id="age">Year built: NA</p>
+        </div>
+
+        <div class="property-detail">
+            <h2>Floor Plan</h2>
+            <p id="square-footage">Square Footage: 3,231 sq. ft.</p>
+            <p id="floor-plan">Floor Plan: 3 Bedrooms, 3 Bathrooms, Open Living Area</p>
+        </div>
+
+        <div class="property-detail">
+            <h2>Additional Facilities</h2>
+            <ul>
+                <li>Bedrooms: 3</li>
+                <li>Bathrooms: 3</li>
+                <li>Garden: No</li>
+                <li>Parking: 1 space</li>
+            </ul>
+        </div>
+
+        <div class="property-detail">
+            <h2>Proximity to Nearby Facilities</h2>
+            <ul>
+                <li>Large Town: 5 miles</li>
+                <li>Schools: 2.5 mile</li>
+                <li>Colleges: 8 miles</li>
+            </ul>
+        </div>
+
+        <div class="property-detail">
+            <h2>Proximity to Main Roads</h2>
+            <p id="main-roads">Main Roads: 2 miles</p>
+        </div>
+
+        <div class="property-detail">
+            <h2>Property Tax Calculation</h2>
+            <p id="tax">Estimated Tax: NA</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Property Details &copy; 2024</p>
+    </footer>
+
+    <script src="properties.js"></script>
+</body>
+</html>
