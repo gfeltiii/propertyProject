@@ -54,6 +54,13 @@
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+ 
+  form > input{
+    padding-left: .25em;
+    width: 100%;
+    margin-bottom: 5px;
+  }
   
   .property-card img {
     width: 100%;
