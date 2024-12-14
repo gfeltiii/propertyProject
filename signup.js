@@ -35,6 +35,7 @@ function formCheck(event){
     }
     if($('password').value!=$('passwordConfirm').value){
         $('warning').innerHTML+="Passwords Do Not Match<br>"
+        sub=false;
     }
     if(sub){
         $('form').submit();
