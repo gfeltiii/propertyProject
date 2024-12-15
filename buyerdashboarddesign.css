@@ -286,3 +286,11 @@ header{
 .close-btn:hover {
     color: #333;
 }
+form > input{
+    padding-left: .25em;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  form > p{
+    text-align: left;
+  }
