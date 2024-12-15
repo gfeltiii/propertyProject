@@ -33,7 +33,7 @@ $result = $conn->query($sql);
         }
     }
 } else {
-    echo "0 results\n";
+    echo "./loginretry.html";
 }
 ?>
 "></span>
